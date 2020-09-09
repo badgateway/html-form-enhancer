@@ -39,6 +39,7 @@ async function processSubmit(elem: HTMLFormElement) {
   }
 
   const response = await fetch(target, {
+    method,
     headers: {
       'Content-Type': encType,
     },
