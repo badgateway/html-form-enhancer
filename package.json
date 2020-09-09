@@ -1,0 +1,23 @@
+{
+  "name": "html-form-enhancer",
+  "version": "0.1.0",
+  "description": "Adds support for enctype=\"application/json\", more HTTP methods and HTTP status codes to HTML forms",
+  "export": "html-form-enhancer.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "html",
+    "json",
+    "enctype",
+    "form"
+  ],
+  "author": "Evert Pot <evert@badgateway.net>",
+  "license": "MIT",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.8.1",
+    "typescript": "^4.0.2"
+  }
+}
