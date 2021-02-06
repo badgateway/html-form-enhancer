@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.1.4 (2021-02-06)
+------------------
+
+* Getting the form method and enctype from an alternative DOM API. Seems that
+  method will get rewritten to 'get' if it's not `GET` or `POST`.
+
+
 0.1.3 (2021-02-06)
 ------------------
 

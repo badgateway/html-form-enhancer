@@ -12,9 +12,13 @@ export function enhanceForm(elem: HTMLFormElement) {
 
 const forms = document.getElementsByTagName('form');
 for(const form of forms) {
+
+  const method = form.getAttribute('method')?.toUpperCase();
+  const encType = form.getAttribute('enctype')?.toLowerCase();
+
   if (
-    ['POST','GET'].includes(form.method.toUpperCase()) ||
-    form.encype === 'application/json'
+    ['POST','GET'].includes(method!) ||
+    encType === 'application/json'
   ) {
     enhanceForm(form);
   }
@@ -22,8 +26,8 @@ for(const form of forms) {
 
 async function processSubmit(elem: HTMLFormElement) {
 
-  const method = elem.method;
-  const encType = elem.enctype;
+  const method = elem.getAttribute('method')?.toUpperCase() || 'GET';
+  const encType = elem.getAttribute('enctype')?.toLowerCase() || 'application/x-www-form-urlencoded';
   let target = elem.target;
   let body;
 
@@ -51,7 +55,7 @@ async function processSubmit(elem: HTMLFormElement) {
   const response = await fetch(target, {
     method,
     headers: {
-      'Content-Type': encType,
+      'Content-Type': encType!,
     },
     body,
     redirect: 'manual',
