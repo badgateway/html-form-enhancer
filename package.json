@@ -15,7 +15,7 @@
   ],
   "files": [
     "src/",
-    "dist/",
+    "dist/"
   ],
   "author": "Evert Pot <evert@badgateway.net>",
   "license": "MIT",
