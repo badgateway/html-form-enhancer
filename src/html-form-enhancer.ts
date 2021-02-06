@@ -10,6 +10,16 @@ export function enhanceForm(elem: HTMLFormElement) {
 
 }
 
+const forms = document.getElementsByTagName('form');
+for(const form of forms) {
+  if (
+    ['POST','GET'].includes(form.method.toUpperCase()) ||
+    form.encype === 'application/json'
+  ) {
+    enhanceForm(form);
+  }
+}
+
 async function processSubmit(elem: HTMLFormElement) {
 
   const method = elem.method;

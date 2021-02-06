@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.1.3 (2021-02-06)
+------------------
+
+* Auto-register forms with methods that are not `POST` or `GET` or if
+  `enctype` is `application/json`.
+
+
 0.1.2 (2021-02-06)
 ------------------
 
