@@ -1,4 +1,4 @@
-import { serializeJsonForm } from './serialize-json-form';
+import { serializeJsonForm } from './serialize-json-form.js';
 
 export function enhanceForm(elem: HTMLFormElement) {
 
