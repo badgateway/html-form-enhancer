@@ -12,6 +12,10 @@
     "enctype",
     "form"
   ],
+  "files": [
+    "src/",
+    "dist/",
+  ],
   "author": "Evert Pot <evert@badgateway.net>",
   "license": "MIT",
   "devDependencies": {
