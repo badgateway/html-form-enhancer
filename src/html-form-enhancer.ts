@@ -2,8 +2,9 @@ import { serializeJsonForm } from './serialize-json-form.js';
 
 export function enhanceForm(elem: HTMLFormElement) {
 
-  elem.addEventListener('submit', () => {
+  elem.addEventListener('submit', (ev) => {
 
+    ev.preventDefault();
     processSubmit(elem);
 
   });
@@ -52,17 +53,23 @@ async function processSubmit(elem: HTMLFormElement) {
 
   }
 
-  const response = await fetch(target, {
-    method,
-    headers: {
-      'Content-Type': encType!,
-    },
-    body,
-    redirect: 'manual',
-  });
+  let response;
+  try {
+    response = await fetch(target, {
+      method,
+      headers: {
+        'Content-Type': encType!,
+      },
+      body,
+      redirect: 'manual',
+    });
+  } catch (err) {
+    console.error('[html-form-enhancer] HTTP error while submitting form: ' + err);
+    return;
+  }
 
   if (!response.ok) {
-    console.error('HTTP error while submitting form: ' + response.status);
+    console.error('[html-form-enhancer] HTTP error while submitting form: ' + response.status);
     return;
   }
 

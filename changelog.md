@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.1.5 (2021-02-06)
+------------------
+
+* Catch fetch errors.
+* Prefix errors in console with `[html-form-enhancer]`.
+* JSON encoding wasn't working yet.
+* Added 'preventDefault' so normal form behavior does not kick in.
+
+
 0.1.4 (2021-02-06)
 ------------------
 

@@ -233,7 +233,7 @@ function isValidInputField(elem: Element): elem is HTMLFormElement {
   const supportedElements = ['input', 'select', 'textarea'];
   const unsupportedInputType = ['submit' , 'button' , 'image' , 'reset' , 'file'];
 
-  if (!supportedElements.includes(elem.nodeName)){
+  if (!supportedElements.includes(elem.nodeName.toLowerCase())){
     return false;
   }
 
