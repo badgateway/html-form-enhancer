@@ -101,8 +101,7 @@ header and redirect the browser to the specified location.
 
 #### Other HTTP responses
 
-Any other HTTP status code is currently ignored. 4xx and 5xx codes also result
-in an error in the console.
-
+Other HTTP responses will result in the entire HTML body to be replaced with
+the body returned from the server.
 
 [1]: https://www.w3.org/TR/html-json-forms/
