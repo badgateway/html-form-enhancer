@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.1.7 (2021-02-06)
+------------------
+
+* Automatically replace body HTML and url when getting a HTML response from a
+  server.
+
+
 0.1.6 (2021-02-06)
 ------------------
 

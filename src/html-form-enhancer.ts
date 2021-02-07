@@ -11,19 +11,23 @@ export function enhanceForm(elem: HTMLFormElement) {
 
 }
 
-const forms = document.getElementsByTagName('form');
-for(const form of forms) {
+export function autoEnhanceForms(doc: Document) {
+  const forms = doc.getElementsByTagName('form');
+  for(const form of forms) {
 
-  const method = form.getAttribute('method')?.toUpperCase();
-  const encType = form.getAttribute('enctype')?.toLowerCase();
+    const method = form.getAttribute('method')?.toUpperCase();
+    const encType = form.getAttribute('enctype')?.toLowerCase();
 
-  if (
-    ['POST','GET'].includes(method!) ||
-    encType === 'application/json'
-  ) {
-    enhanceForm(form);
+    if (
+      ['POST','GET'].includes(method!) ||
+      encType === 'application/json'
+    ) {
+      enhanceForm(form);
+    }
   }
 }
+
+autoEnhanceForms(document);
 
 async function processSubmit(elem: HTMLFormElement) {
 
@@ -59,6 +63,7 @@ async function processSubmit(elem: HTMLFormElement) {
       method,
       headers: {
         'Content-Type': encType!,
+        'Accept': 'text/html',
       },
       body,
       redirect: 'manual',
@@ -70,6 +75,7 @@ async function processSubmit(elem: HTMLFormElement) {
 
   if (!response.ok) {
     console.error('[html-form-enhancer] HTTP error while submitting form: ' + response.status);
+    await replaceBody(response);
     return;
   }
 
@@ -88,6 +94,7 @@ async function processSubmit(elem: HTMLFormElement) {
     case 201:
       const location = response.headers.get('Location');
       if (location) {
+        document.location.href = location;
         elem.target = location;
         elem.method = 'PUT';
       } else {
@@ -100,7 +107,20 @@ async function processSubmit(elem: HTMLFormElement) {
     case 205 :
       elem.reset();
       break;
+    default:
+      replaceBody(response);
 
   }
+
+}
+
+async function replaceBody(response: Response) {
+
+  const responseBody = await response.text();
+  const domParser = new DOMParser();
+  const newDom = domParser.parseFromString(responseBody, 'text/html');
+  autoEnhanceForms(newDom);
+  document.body.innerHTML = newDom.body.innerHTML;
+  history.pushState(null, newDom.title, response.url);
 
 }
