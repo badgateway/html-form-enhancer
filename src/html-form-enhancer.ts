@@ -50,7 +50,7 @@ async function processSubmit(elem: HTMLFormElement) {
   } else {
 
     if (!encType || encType === 'application/x-www-form-urlencoded') {
-      body = new URLSearchParams(Object.fromEntries(new FormData(elem).entries()));
+      body = new URLSearchParams(Object.fromEntries(new FormData(elem).entries()) as Record<string, string>);
     } else if (encType === 'application/json' || encType.match(/^application\/(.*)\+json$/)) {
       body = JSON.stringify(serializeJsonForm(elem));
     }
