@@ -15,11 +15,11 @@ export function autoEnhanceForms(doc: Document) {
   const forms = doc.getElementsByTagName('form');
   for(const form of forms) {
 
-    const method = form.getAttribute('method')?.toUpperCase();
+    const method = form.getAttribute('method')?.toUpperCase() || 'GET';
     const encType = form.getAttribute('enctype')?.toLowerCase();
 
     if (
-      ['POST','GET'].includes(method!) ||
+      !['POST','GET'].includes(method) ||
       encType === 'application/json'
     ) {
       enhanceForm(form);
@@ -50,7 +50,7 @@ async function processSubmit(elem: HTMLFormElement) {
   } else {
 
     if (!encType || encType === 'application/x-www-form-urlencoded') {
-      body = new FormData(elem);
+      body = new URLSearchParams(Object.fromEntries(new FormData(elem).entries()));
     } else if (encType === 'application/json' || encType.match(/^application\/(.*)\+json$/)) {
       body = JSON.stringify(serializeJsonForm(elem));
     }
