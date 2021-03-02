@@ -91,7 +91,7 @@ async function processSubmit(elem: HTMLFormElement) {
 
   switch(response.status) {
 
-    case 201:
+    case 201: {
       const location = response.headers.get('Location');
       if (location) {
         document.location.href = location;
@@ -101,6 +101,7 @@ async function processSubmit(elem: HTMLFormElement) {
         console.warn('Got a 201 response from a form submission, but no Location header');
       }
       break;
+    }
     case 204 :
       // Do nothing
       break;
