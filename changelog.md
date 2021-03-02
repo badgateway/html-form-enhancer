@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.1.8 (2021-03-02)
+------------------
+
+* No longer take over forms if they have a method and enctype browsers support.
+* Correctly serialize `application/x-www-form-urlencoded`. `FormData` doesn't
+  do it out of the box.
+
+
 0.1.7 (2021-02-06)
 ------------------
 
