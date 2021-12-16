@@ -1,7 +1,13 @@
 Changelog
 =========
 
-0.1.10 (2021-03-02)
+0.1.11 (2021-12-16)
+------------------
+
+* Remove use of `redirect: manual`. This setting is not what it said on the tin.
+
+
+0.1.10 (2021-12-16)
 -------------------
 
 * #2: The `action` attribute was in some cases ignored.
