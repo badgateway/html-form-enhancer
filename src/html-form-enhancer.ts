@@ -33,11 +33,11 @@ async function processSubmit(elem: HTMLFormElement) {
 
   const method = elem.getAttribute('method')?.toUpperCase() || 'GET';
   const encType = elem.getAttribute('enctype')?.toLowerCase() || 'application/x-www-form-urlencoded';
-  let target = elem.target;
+  let action = elem.action;
   let body;
 
   if (method === 'GET' || method === 'DELETE') {
-    const tUrl = new URL(target);
+    const tUrl = new URL(action);
     for(const [key, value] of new FormData(elem)) {
       if (typeof value === 'string') {
         tUrl.searchParams.append(key, value);
@@ -45,7 +45,7 @@ async function processSubmit(elem: HTMLFormElement) {
         console.warn('Form field %s is ignored', key);
       }
     }
-    target = tUrl.toString();
+    action = tUrl.toString();
     body = undefined;
   } else {
 
@@ -59,7 +59,7 @@ async function processSubmit(elem: HTMLFormElement) {
 
   let response;
   try {
-    response = await fetch(target, {
+    response = await fetch(action, {
       method,
       headers: {
         'Content-Type': encType!,
@@ -95,7 +95,7 @@ async function processSubmit(elem: HTMLFormElement) {
       const location = response.headers.get('Location');
       if (location) {
         document.location.href = location;
-        elem.target = location;
+        elem.action = location;
         elem.method = 'PUT';
       } else {
         console.warn('Got a 201 response from a form submission, but no Location header');
