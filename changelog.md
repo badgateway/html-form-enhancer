@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.1.10 (2021-03-02)
+-------------------
+
+* #2: The `action` attribute was in some cases ignored.
+
+
 0.1.9 (2021-03-02)
 ------------------
 
