@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import { serializeJsonForm } from './serialize-json-form.js';
 
 export function enhanceForm(elem: HTMLFormElement) {
