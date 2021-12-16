@@ -23,14 +23,12 @@ export function serializeJsonForm(form: HTMLFormElement) {
 
   let result = {};
 
-  const elements = form && form.elements ? form.elements : [];
+  const elements = form?.elements ? form.elements : [];
 
   //Object store each radio and set if it's empty or not
   const radio_store = Object.create(null);
 
-  for (let i=0 ; i<elements.length ; ++i) {
-
-    const element = elements[i];
+  for (const element of elements) {
 
     if (!isValidInputField(element)) {
       // ignore anyhting that is not considered a success field
@@ -75,8 +73,7 @@ export function serializeJsonForm(form: HTMLFormElement) {
 
       const selectOptions = element.options;
       let isSelectedOptions = false;
-      for (let j=0 ; j<selectOptions.length ; ++j) {
-        const option = selectOptions[j];
+      for (const option of selectOptions) {
         const hasValue = !!option.value;
         if (option.selected && hasValue) {
           isSelectedOptions = true;
@@ -121,7 +118,7 @@ function parse_keys(str: string): string[] {
   const children = new RegExp(brackets);
   let match = prefix.exec(str);
 
-  if (match && match[1]) {
+  if (match?.[1]) {
     keys.push(match[1]);
   }
 
