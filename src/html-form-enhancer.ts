@@ -67,7 +67,6 @@ async function processSubmit(elem: HTMLFormElement) {
         'Accept': 'text/html',
       },
       body,
-      redirect: 'manual',
     });
   } catch (err) {
     console.error('[html-form-enhancer] HTTP error while submitting form: ' + err);
@@ -80,6 +79,12 @@ async function processSubmit(elem: HTMLFormElement) {
     return;
   }
 
+  /*
+   * As far as we know there's currently no way we can receive a 3xx response
+   *
+   * Leaving this code snippet for future archeologists, or in case browsers have a means
+   * to intercept 3xx responses in the future.
+
   if (response.status >= 300 && response.status <= 399) {
     const location = response.headers.get('Location');
     if (location) {
@@ -89,6 +94,7 @@ async function processSubmit(elem: HTMLFormElement) {
     }
     return;
   }
+  */
 
   switch(response.status) {
 
