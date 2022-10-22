@@ -2,7 +2,7 @@ html-form-enhancer
 ==================
 
 This package contains a small javascript utility that adds a few features
-to HTML forms that are often requested, but don't exists in browsers:
+to HTML forms that are often requested, but don't exist in browsers:
 
 * `enctype="application/json"` to encode form fields to JSON.
 * Support for additional methods such as `PUT`, `DELETE`, `PATCH`, `REPORT`,
