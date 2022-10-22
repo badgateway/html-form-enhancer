@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.1.12 (2022-10-22)
+-------------------
+
+* If a form has an input with `name="action"` this conflicts with the `action`
+  attribute on forms. This is now fixed.
+
+
 0.1.11 (2021-12-16)
 ------------------
 
