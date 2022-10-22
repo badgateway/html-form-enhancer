@@ -6,10 +6,6 @@ all: build
 .PHONY:build
 build: dist/build
 
-.PHONY:test
-test:
-	npx nyc mocha
-
 .PHONY:lint
 lint:
 	npx eslint --quiet 'src/*.ts'

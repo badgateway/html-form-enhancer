@@ -5,7 +5,8 @@
   "export": "html-form-enhancer.mjs",
   "main": "dist/html-form-enhancer.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint"
   },
   "keywords": [
     "html",

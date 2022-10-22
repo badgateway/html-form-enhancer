@@ -34,7 +34,7 @@ async function processSubmit(elem: HTMLFormElement) {
 
   const method = elem.getAttribute('method')?.toUpperCase() || 'GET';
   const encType = elem.getAttribute('enctype')?.toLowerCase() || 'application/x-www-form-urlencoded';
-  let action = elem.action;
+  let action = elem.getAttribute('action') ?? '';
   let body;
 
   if (method === 'GET' || method === 'DELETE') {
@@ -117,6 +117,7 @@ async function processSubmit(elem: HTMLFormElement) {
       break;
     default:
       replaceBody(response);
+      break;
 
   }
 
