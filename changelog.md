@@ -1,6 +1,12 @@
 Changelog
 =========
 
+0.2.0 (????-??-??)
+------------------
+
+* Updated to Typescript 5.
+
+
 0.1.12 (2022-10-22)
 -------------------
 
@@ -9,9 +15,10 @@ Changelog
 
 
 0.1.11 (2021-12-16)
-------------------
+-------------------
 
-* Remove use of `redirect: manual`. This setting is not what it said on the tin.
+* Remove use of `redirect: manual`. This setting is not what it said on the
+  tin.
 
 
 0.1.10 (2021-12-16)
@@ -67,8 +74,8 @@ Changelog
 0.1.3 (2021-02-06)
 ------------------
 
-* Auto-register forms with methods that are not `POST` or `GET` or if
-  `enctype` is `application/json`.
+* Auto-register forms with methods that are not `POST` or `GET` or if `enctype`
+  is `application/json`.
 
 
 0.1.2 (2021-02-06)
