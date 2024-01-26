@@ -2,12 +2,12 @@
   "name": "html-form-enhancer",
   "version": "0.1.12",
   "description": "Adds support for enctype=\"application/json\", more HTTP methods and HTTP status codes to HTML forms",
-  "export": "html-form-enhancer.mjs",
-  "main": "dist/html-form-enhancer.js",
+  "export": "src/html-form-enhancer.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint"
   },
+  "type": "module",
   "keywords": [
     "html",
     "json",

@@ -3,7 +3,7 @@
  *
  * https://github.com/defunctzombie/form-serialize/blob/master/LICENSE
  *
- * It's cleaned up, modernized and converted to Typescript, but the original
+ * It's cleaned up and modernized, but the original
  * is Copyright (c) 2013 Roman Shtylman and licensed under the MIT license.
  */
 
@@ -17,9 +17,10 @@ const brackets = /(\[[^[\]]*\])/g;
 /**
  * Serializes a form into html-json-forms format.
  *
+ * @param {HTMLFormElement} form
  * https://www.w3.org/TR/html-json-forms/
  */
-export function serializeJsonForm(form: HTMLFormElement) {
+export function serializeJsonForm(form) {
 
   let result = {};
 
@@ -112,7 +113,11 @@ export function serializeJsonForm(form: HTMLFormElement) {
   return result;
 }
 
-function parse_keys(str: string): string[] {
+/**
+ * @param {string} str
+ * @returns {string[]}
+ */
+function parse_keys(str) {
   const keys = [];
   const prefix = /^([^[\]]*)/;
   const children = new RegExp(brackets);
@@ -130,18 +135,18 @@ function parse_keys(str: string): string[] {
 }
 
 /**
- * Too hard to type right now
+ * @param {any} result
+ * @param {string[]} keys
+ * @param {any} value
  */
-type Result = any;
-type Value = string;
-
-function hash_assign(result: Result, keys: string[], value: Value): Result {
+function hash_assign(result, keys, value) {
   if (keys.length === 0) {
     result = value;
     return result;
   }
 
-  const key = keys.shift()!;
+  const key = keys.shift();
+  if (!key) return result;
   const between = key.match(/^\[(.+?)\]$/);
 
   if (key === '[]') {
@@ -189,8 +194,12 @@ function hash_assign(result: Result, keys: string[], value: Value): Result {
   return result;
 }
 
-// Object/hash encoding serializer.
-function hash_serializer(result: Result, key: string, value: Value) {
+/**
+ * @param {any} result
+ * @param {string} key
+ * @param {any} value
+ */
+function hash_serializer(result, key, value) {
   const matches = key.match(brackets);
 
   // Has brackets? Use the recursive assignment function to walk the keys,
@@ -225,7 +234,11 @@ function hash_serializer(result: Result, key: string, value: Value) {
   return result;
 }
 
-function isValidInputField(elem: Element): elem is HTMLFormElement {
+/**
+ * @param {Element} elem
+ * @returns {elem is HTMLFormElement}
+ */
+function isValidInputField(elem) {
 
   const supportedElements = ['input', 'select', 'textarea'];
   const unsupportedInputType = ['submit' , 'button' , 'image' , 'reset' , 'file'];
@@ -234,7 +247,11 @@ function isValidInputField(elem: Element): elem is HTMLFormElement {
     return false;
   }
 
-  if (unsupportedInputType.includes((elem as any).type)) {
+  if (!(elem instanceof HTMLInputElement)) {
+    return false;
+  }
+
+  if (unsupportedInputType.includes(elem.type)) {
     return false;
   }
   return true;

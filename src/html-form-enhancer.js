@@ -1,7 +1,9 @@
-/* eslint no-console: 0 */
 import { serializeJsonForm } from './serialize-json-form.js';
 
-export function enhanceForm(elem: HTMLFormElement) {
+/**
+ * @param {HTMLFormElement} elem
+ */
+export function enhanceForm(elem) {
 
   elem.addEventListener('submit', (ev) => {
 
@@ -12,7 +14,10 @@ export function enhanceForm(elem: HTMLFormElement) {
 
 }
 
-export function autoEnhanceForms(doc: Document) {
+/**
+ * @param {Document} doc
+ */
+export function autoEnhanceForms(doc) {
   const forms = doc.getElementsByTagName('form');
   for(const form of forms) {
 
@@ -30,7 +35,10 @@ export function autoEnhanceForms(doc: Document) {
 
 autoEnhanceForms(document);
 
-async function processSubmit(elem: HTMLFormElement) {
+/**
+ * @param {HTMLFormElement} elem
+ */
+async function processSubmit(elem) {
 
   const method = elem.getAttribute('method')?.toUpperCase() || 'GET';
   const encType = elem.getAttribute('enctype')?.toLowerCase() || 'application/x-www-form-urlencoded';
@@ -51,7 +59,9 @@ async function processSubmit(elem: HTMLFormElement) {
   } else {
 
     if (!encType || encType === 'application/x-www-form-urlencoded') {
-      body = new URLSearchParams(Object.fromEntries(new FormData(elem).entries()) as Record<string, string>);
+      body = new URLSearchParams(
+        /** @type {any} */(new FormData(elem))
+      );
     } else if (encType === 'application/json' || encType.match(/^application\/(.*)\+json$/)) {
       body = JSON.stringify(serializeJsonForm(elem));
     }
@@ -63,7 +73,7 @@ async function processSubmit(elem: HTMLFormElement) {
     response = await fetch(action, {
       method,
       headers: {
-        'Content-Type': encType!,
+        'Content-Type': encType,
         'Accept': 'text/html',
       },
       body,
@@ -123,7 +133,10 @@ async function processSubmit(elem: HTMLFormElement) {
 
 }
 
-async function replaceBody(response: Response) {
+/**
+ * @param {Response} response
+ */
+async function replaceBody(response) {
 
   const responseBody = await response.text();
   const domParser = new DOMParser();

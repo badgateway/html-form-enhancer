@@ -9,13 +9,14 @@
 
         "moduleResolution": "node",
         "sourceMap": true,
-        "outDir": "dist",
+        "noEmit": true,
         "baseUrl": ".",
         "paths": {
             "*": [
                 "src/types/*"
             ]
         },
+        "checkJs": true,
         "lib": [
           "DOM",
           "DOM.Iterable",

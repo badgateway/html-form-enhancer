@@ -1,10 +1,11 @@
 Changelog
 =========
 
-0.2.0 (????-??-??)
+1.0.0 (????-??-??)
 ------------------
 
 * Updated to Typescript 5.
+* Conversion from Typescript to Javascript.
 
 
 0.1.12 (2022-10-22)
